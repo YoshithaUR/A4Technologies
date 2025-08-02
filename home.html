@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechCorp - Modern Digital Solutions</title>
+    <title>A4 technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="about.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <!-- <link rel="stylesheet" href="home.css"> -->
+      <!-- <link rel="stylesheet" href="about.css"> -->
 </head>
-<body class="dark-mode">
+<body>
+    <!-- Loading Screen -->
+    <!-- <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div> -->
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <h2>TechCorp</h2>
-            </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#technologies" class="nav-link">Technologies</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#team" class="nav-link">Team</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+            <div class="nav-logo">A4 technologies</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
             <div class="nav-toggle">
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="hamburger">
+                <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -38,156 +39,69 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#services" class="mobile-nav-link">Services</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="hero-bg-image"></div>
-            <div class="hero-bg-overlay"></div>
-        </div>
-        
-        <!-- Hero Slideshow -->
-        <div class="hero-slideshow">
-            <div class="slide active" data-slide="1">
-                <div class="slide-content">
-                    <h1 class="hero-title">
-                        <span class="gradient-text">Innovative</span> Digital Solutions
-                    </h1>
-                    <p class="hero-subtitle">
-                        We transform ideas into powerful digital experiences with cutting-edge technology and creative design.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary">Get Started</button>
-                        <button class="btn btn-secondary">Learn More</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="floating-card" id="tiltCard">
-                        <div class="card-glow"></div>
-                        <div class="card-content">
-                            <div class="card-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="card-title">Innovation Hub</div>
-                            <div class="card-subtitle">Future-Ready Solutions</div>
-                        </div>
-                    </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Building <span class="gradient-text">Digital Excellence</span> Together
+                </h1>
+                <p class="hero-subtitle">
+                    We transform innovative ideas into powerful software solutions that drive business growth and create exceptional user experiences.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        View Services
+                    </a>
                 </div>
             </div>
-            
-            <div class="slide" data-slide="2">
-                <div class="slide-content">
-                    <h1 class="hero-title">
-                        <span class="gradient-text">Creative</span> Web Development
-                    </h1>
-                    <p class="hero-subtitle">
-                        Building modern, responsive websites that engage users and drive business growth.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary">View Projects</button>
-                        <button class="btn btn-secondary">Our Services</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
+            <div class="hero-visual">
+                <div class="floating-cards">
                     <div class="floating-card">
-                        <div class="card-glow"></div>
-                        <div class="card-content">
-                            <div class="card-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="card-title">Code Craft</div>
-                            <div class="card-subtitle">Clean & Efficient</div>
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
                         </div>
+                        <div class="card-title">Custom Development</div>
+                        <div class="card-subtitle">Tailored Solutions</div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="slide" data-slide="3">
-                <div class="slide-content">
-                    <h1 class="hero-title">
-                        <span class="gradient-text">Expert</span> Team Support
-                    </h1>
-                    <p class="hero-subtitle">
-                        Our experienced team delivers exceptional results with passion and dedication.
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary">Meet Our Team</button>
-                        <button class="btn btn-secondary">Contact Us</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
                     <div class="floating-card">
-                        <div class="card-glow"></div>
-                        <div class="card-content">
-                            <div class="card-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="card-title">Team Power</div>
-                            <div class="card-subtitle">Collaboration & Excellence</div>
+                        <div class="card-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
+                        <div class="card-title">Mobile Apps</div>
+                        <div class="card-subtitle">iOS & Android</div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slideshow Navigation -->
-        <div class="slideshow-nav">
-            <button class="slide-dot active" data-slide="1"></button>
-            <button class="slide-dot" data-slide="2"></button>
-            <button class="slide-dot" data-slide="3"></button>
-        </div>
-        
-        <!-- Slideshow Controls -->
-        <button class="slide-control prev-slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slide-control next-slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="section-bg-image stats-bg"></div>
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
+                    <div class="floating-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="card-title">Cloud Solutions</div>
+                        <div class="card-subtitle">Scalable & Secure</div>
                     </div>
-                    <div class="stat-number" data-target="500">0</div>
-                    <div class="stat-label">Happy Clients</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <div class="stat-number" data-target="150">0</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="stat-number" data-target="10000">0</div>
-                    <div class="stat-label">Lines of Code</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="stat-number" data-target="25">0</div>
-                    <div class="stat-label">Awards Won</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us Section -->
+    
+
      <!-- About Us Section -->
+     
     <section id="about" class="about">
         <div class="section-bg-image about-bg"></div>
         <div class="container">
@@ -354,9 +268,42 @@
             </div>
         </div>
     </section>
-
-
-    <!-- Technologies Section -->
+<!-- Stats Section -->
+    <section class="stats scroll-animate">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Awards Won</div>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- Technologies Section -->
     <section id="technologies" class="technologies">
         <div class="section-bg-image tech-bg"></div>
         <div class="container">
@@ -937,16 +884,10 @@
         </div>
     </footer>
 
-    <!-- Floating Contact Icons -->
-    <div class="floating-contact">
-        <a href="#" class="floating-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="#" class="floating-btn email">
-            <i class="fas fa-envelope"></i>
-        </a>
-    </div>
 
     <script src="script.js"></script>
+    
+
 </body>
+
 </html>

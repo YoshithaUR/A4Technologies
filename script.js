@@ -1,4 +1,4 @@
-// TechFlow Solutions - Interactive JavaScript
+// TechFlow Solutions - Interactive JavaScript (Color Lines Removed)
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -558,34 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     createParticles();
     
-    // ===== SCROLL PROGRESS INDICATOR =====
-    
-    function createScrollProgress() {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'scroll-progress';
-        progressBar.style.cssText = `
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            z-index: 1001;
-            transition: width 0.1s ease;
-        `;
-        
-        document.body.appendChild(progressBar);
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            
-            progressBar.style.width = scrollPercent + '%';
-        });
-    }
-    
-    createScrollProgress();
+    // ===== SCROLL PROGRESS INDICATOR REMOVED =====
+    // The scroll progress bar creation function has been completely removed
     
     // ===== TYPEWRITER EFFECT =====
     
@@ -882,8 +856,8 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 TechFlow Solutions website loaded successfully!');
     console.log('💡 Try the Konami code for a surprise!');
     
-    // Add some interactive console messages
-    console.log('%c Welcome to TechFlow Solutions! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');
-    console.log('%c Built with ❤️ using modern web technologies ', 'background: #10b981; color: white; padding: 5px; border-radius: 3px;');
+    
+    // console.log('%c Welcome to TechFlow Solutions! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');
+    // console.log('%c Built with ❤️ using modern web technologies ', 'background: #10b981; color: white; padding: 5px; border-radius: 3px;');
     
 });

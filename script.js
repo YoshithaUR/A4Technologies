@@ -859,5 +859,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // console.log('%c Welcome to TechFlow Solutions! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');
     // console.log('%c Built with ❤️ using modern web technologies ', 'background: #10b981; color: white; padding: 5px; border-radius: 3px;');
+   
     
 });

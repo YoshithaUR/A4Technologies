@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">A4 technologies</div>
+            <div class="nav-logo">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="A4 Technologies Logo">
+                <span class="nav-logo-text">A4 Technologies</span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -20,7 +26,7 @@
             </ul>
             <div class="nav-toggle">
                 <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
                 </button>
                 <div class="hamburger" id="hamburger">
                     <span></span>
@@ -30,7 +36,7 @@
             </div>
         </div>
     </nav>
-
+<br>
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-nav-links">
@@ -46,10 +52,10 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Building <span class="gradient-text">Digital Excellence</span> Together
+                    Building <span class="gradient-text">Digital Excellence</span> for Tomorrow
                 </h1>
                 <p class="hero-subtitle">
-                    We transform innovative ideas into powerful software solutions that drive business growth and create exceptional user experiences.
+                    Transform your business with cutting-edge software solutions. We create innovative, scalable, and user-centric applications that drive growth and deliver exceptional experiences.
                 </p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">
@@ -58,8 +64,22 @@
                     </a>
                     <a href="#services" class="btn btn-secondary">
                         <i class="fas fa-eye"></i>
-                        View Services
+                        Explore Services
                     </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Available</span>
+                    </div>
                 </div>
             </div>
            
@@ -70,35 +90,26 @@
                             <i class="fas fa-code"></i>
                         </div>
                         <div class="card-title">Custom Development</div>
-                        <div class="card-subtitle">Tailored Solutions</div>
+                       
                     </div>
                     <div class="floating-card">
                         <div class="card-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div class="card-title">Mobile Apps</div>
-                        <div class="card-subtitle">iOS & Android</div>
+                        <div class="card-title">Mobile Applications</div>
+                       
                     </div>
                     <div class="floating-card">
                         <div class="card-icon">
                             <i class="fas fa-cloud"></i>
                         </div>
                         <div class="card-title">Cloud Solutions</div>
-                        <div class="card-subtitle">Scalable & Secure</div>
+                       
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <!-- Additional Hero Images -->
-        <!-- <div class="hero-gallery">
-            <div class="hero-gallery-item">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Modern workspace">
-            </div>
-            <div class="hero-gallery-item">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Coding environment">
-            </div> -->
-        </div>
+
     </section>
 
     <!-- About Us Section -->
@@ -931,6 +942,14 @@
             </div>
         </div>
     </footer>
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+    });
+</script>
 
     <script src="script.js"></script>
 </body>

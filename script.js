@@ -1,15 +1,16 @@
-// TechFlow Solutions - Interactive JavaScript (Color Lines Removed)
+// TechFlow Solutions - Interactive JavaScript (Fixed Version)
 
 document.addEventListener('DOMContentLoaded', function() {
     
     // ===== NAVIGATION FUNCTIONALITY =====
     
-    // Mobile menu toggle
+    // Mobile menu toggle - Single declaration
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     
     if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             
@@ -41,6 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
             spans[2].style.transform = 'none';
         });
     });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (hamburger && mobileMenu) {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        }
+    });
     
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
@@ -65,26 +76,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     
-    // Check for saved theme preference or default to 'light'
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    
-    // Update theme toggle icon
-    function updateThemeIcon() {
-        const icon = themeToggle.querySelector('i');
-        const currentTheme = body.getAttribute('data-theme');
-        
-        if (currentTheme === 'dark') {
-            icon.className = 'fas fa-sun';
-        } else {
-            icon.className = 'fas fa-moon';
-        }
-    }
-    
-    updateThemeIcon();
-    
-    // Theme toggle event listener
     if (themeToggle) {
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        
+        // Update theme toggle icon
+        function updateThemeIcon() {
+            const icon = themeToggle.querySelector('i');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+        
+        updateThemeIcon();
+        
+        // Theme toggle event listener
         themeToggle.addEventListener('click', function() {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -229,6 +240,49 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+    
+    // ===== FLOATING CARDS ANIMATION FIX =====
+    
+    // Fix for floating cards visibility and animation
+    const floatingCards = document.querySelectorAll('.floating-card');
+    
+    // Ensure floating cards are visible and properly styled
+    floatingCards.forEach((card, index) => {
+        // Make sure cards are visible
+        card.style.opacity = '1';
+        card.style.visibility = 'visible';
+        card.style.background = 'rgba(255, 255, 255, 0.1)';
+        card.style.backdropFilter = 'blur(10px)';
+        card.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+        card.style.color = 'white';
+        
+        // Add floating animation
+        card.style.animation = `float ${3 + index}s ease-in-out infinite`;
+        
+        // Add hover effects
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.05)';
+            this.style.background = 'rgba(255, 255, 255, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
+    
+    // Add floating keyframes if not exist
+    if (!document.querySelector('#floating-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'floating-keyframes';
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
     
     // ===== SCROLL ANIMATIONS =====
     
@@ -448,11 +502,21 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.transform = `translateY(${scrolled * speed}px)`;
         });
         
-        // Floating cards parallax
-        const floatingCards = document.querySelectorAll('.floating-card');
+        // Floating cards parallax - Updated
         floatingCards.forEach((card, index) => {
             const speed = 0.1 + (index * 0.05);
-            card.style.transform = `translateY(${scrolled * speed}px)`;
+            const currentTransform = card.style.transform || '';
+            const yTransform = `translateY(${scrolled * speed}px)`;
+            
+            // Preserve existing transforms
+            if (currentTransform.includes('scale') || currentTransform.includes('translate')) {
+                // Don't override hover effects
+                if (!card.matches(':hover')) {
+                    card.style.transform = yTransform;
+                }
+            } else {
+                card.style.transform = yTransform;
+            }
         });
     });
     
@@ -557,9 +621,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     createParticles();
-    
-    // ===== SCROLL PROGRESS INDICATOR REMOVED =====
-    // The scroll progress bar creation function has been completely removed
     
     // ===== TYPEWRITER EFFECT =====
     
@@ -853,12 +914,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== INITIALIZE ALL FEATURES =====
     
-    console.log(' A4 technologies website loaded successfully!');
-    console.log(' Try the Konami code for a surprise!');
-    
-    
-    // console.log('%c Welcome to TechFlow Solutions! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');
-    // console.log('%c Built with ❤️ using modern web technologies ', 'background: #10b981; color: white; padding: 5px; border-radius: 3px;');
-   
+    console.log('🚀 A4 Technologies website loaded successfully!');
+    console.log('💡 Try the Konami code for a surprise!');
+    console.log('%c Welcome to A4 Technologies! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');
+    console.log('%c Built with ❤️ using modern web technologies ', 'background: #10b981; color: white; padding: 5px; border-radius: 3px;');
     
 });

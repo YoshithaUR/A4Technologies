@@ -128,7 +128,43 @@
             margin: 0 auto;
             padding: 0 var(--spacing-md);
         }
+/* Custom Mouse Cursor */
+        .mouse-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
 
+        .mouse-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.2s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+        }
+
+        .mouse-glow {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
         /* Navigation */
         .navbar {
             position: fixed;
@@ -275,13 +311,13 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* Mobile Menu */
+          /* Mobile Menu - Fixed */
         .mobile-menu {
             position: fixed;
             top: 80px;
             left: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
             transform: translateY(-100%);
@@ -289,6 +325,12 @@
             visibility: hidden;
             transition: all var(--transition-normal);
             z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        [data-theme="light"] .mobile-menu {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .mobile-menu.active {
@@ -311,14 +353,18 @@
             padding: var(--spacing-md);
             border-radius: var(--radius-lg);
             transition: all var(--transition-fast);
-            border: 1px solid transparent;
+            border: 2px solid transparent;
+            text-align: center;
         }
 
-        .mobile-nav-link:hover {
+        .mobile-nav-link:hover,
+        .mobile-nav-link:focus {
             background: var(--bg-glass);
             color: var(--primary-color);
             border-color: var(--primary-color);
+            transform: translateY(-2px);
         }
+
 
         /* Hero Section */
         .hero {

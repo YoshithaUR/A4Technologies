@@ -17,11 +17,11 @@
             --danger-color: #ff6b6b;
             
             /* Background Colors */
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-primary: #000000;
+            --bg-secondary: #030303;
+            --bg-tertiary: #0c0b0b;
+            --bg-glass: rgba(2, 2, 2, 0.05);
+            --bg-card: rgba(31, 22, 22, 0.03);
             
             /* Text Colors */
             --text-primary: #ffffff;
@@ -2177,6 +2177,7 @@
     font-weight: 600;
     margin-bottom: var(--spacing-md);
     color: var(--text-white);
+    padding-top: 50px;
 }
 
 .footer-section ul {
@@ -2201,6 +2202,7 @@
     display: flex;
     gap: var(--spacing-sm);
     margin-top: var(--spacing-md);
+    
 }
 
 .footer .social-links a {
@@ -2214,6 +2216,7 @@
     color: var(--text-white);
     text-decoration: none;
     transition: all var(--transition-fast);
+    margin-left: 10px;
 }
 
 .footer .social-links a:hover {
@@ -2221,37 +2224,43 @@
     transform: translateY(-3px);
 }
 
-/* Back to Top Button */
+/* Container */
 .back-to-top {
     text-align: center;
     margin: var(--spacing-xl) 0;
 }
 
+/* Button Link */
 .btn-back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-white);
     border: none;
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    font-weight: 600;
+    border-radius: 50px;
     font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
-    transition: all var(--transition-normal);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    margin: 0 auto;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Hover Effects */
 .btn-back-to-top:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
 }
 
+/* Icon Styling */
 .btn-back-to-top i {
     font-size: 1.2rem;
 }
+
 
 /* Footer Copyright */
 .footer-copyright {
@@ -2766,6 +2775,7 @@
     .social-links {
         justify-content: center;
         flex-wrap: wrap;
+        
     }
 }
 

@@ -507,7 +507,7 @@
             animation: fadeInRight 1s ease 0.3s both;
         }
 
-        .floating-cards {
+         .floating-cards {
             position: relative;
             width: 100%;
             height: 100%;
@@ -533,20 +533,31 @@
             overflow: hidden;
         }
 
-        .floating-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(240, 147, 251, 0.05));
-            opacity: 0;
-            transition: opacity var(--transition-normal);
+/* Background images for floating cards */
+       .floating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 1; 
+    z-index: 0;
+    transition: opacity var(--transition-normal);
+}
+
+        .floating-card:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .floating-card:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
         }
 
         .floating-card:hover::before {
-            opacity: 1;
+            opacity: 0.2;
         }
 
         .floating-card:nth-child(1) {
@@ -563,13 +574,6 @@
             z-index: 3;
             box-shadow: var(--shadow-xl);
             border: 2px solid var(--primary-color);
-        }
-
-        .floating-card:nth-child(3) {
-            align-self: flex-end;
-            animation-delay: 4s;
-            transform: rotate(2deg);
-            margin-right: -40px;
         }
 
         .floating-card:hover {
@@ -590,6 +594,8 @@
             font-size: 1.8rem;
             margin-bottom: var(--spacing-md);
             box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 2;
         }
 
         .card-title {
@@ -598,12 +604,16 @@
             font-size: 1.3rem;
             margin-bottom: var(--spacing-xs);
             color: var(--text-primary);
+            position: relative;
+            z-index: 2;
         }
 
         .card-subtitle {
             color: var(--text-secondary);
             font-size: 1rem;
             font-weight: 500;
+            position: relative;
+            z-index: 2;
         }
 
         /* Stats Section */
@@ -1081,9 +1091,11 @@
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
     position: relative;
+    align-items: center; 
 }
 
-.timeline-item:not(:last-child)::after {
+
+/* .timeline-item:not(:last-child)::after {
     content: '';
     position: absolute;
     left: 25px;
@@ -1091,7 +1103,7 @@
     width: 2px;
     height: 40px;
     background: var(--border-color);
-}
+} */
 
 .timeline-year {
     background: var(--primary-color);
@@ -1631,8 +1643,8 @@
 
 .service-icon {
     position: absolute;
-    top: -25px;
-    left: var(--spacing-lg);
+    top: 20px;
+    left: 10px;
     width: 50px;
     height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));

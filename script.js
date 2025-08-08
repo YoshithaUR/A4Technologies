@@ -853,8 +853,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== INITIALIZE ALL FEATURES =====
     
-    console.log('🚀 TechFlow Solutions website loaded successfully!');
-    console.log('💡 Try the Konami code for a surprise!');
+    console.log(' A4 technologies website loaded successfully!');
+    console.log(' Try the Konami code for a surprise!');
     
     
     // console.log('%c Welcome to TechFlow Solutions! ', 'background: linear-gradient(135deg, #6366f1, #ec4899); color: white; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold;');

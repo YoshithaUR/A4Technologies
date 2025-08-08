@@ -327,7 +327,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding-top: 80px;
+            padding-top: -80px;
         }
 
         .hero-container {
@@ -362,7 +362,7 @@
 
         .hero-title {
             font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: var(--spacing-lg);
@@ -394,6 +394,7 @@
             display: flex;
             gap: var(--spacing-md);
             flex-wrap: wrap;
+            padding-top: 50px;
         }
 
         /* Buttons */

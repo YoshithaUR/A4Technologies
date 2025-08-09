@@ -431,7 +431,7 @@
         transition: all var(--transition-slow);
         animation: float 6s ease-in-out infinite;
         width: 280px;
-        min-height: 160px;
+        min-height: 240px;
         overflow: hidden;
     }
 
@@ -450,16 +450,27 @@
     }
 
     .floating-card:nth-child(1)::before {
-        background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-image: url('./Images/FloatCard/1.jpg');
     }
 
     .floating-card:nth-child(2)::before {
-        background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        background-image: url('./Images/FloatCard/2.jpg');
     }
 
     .floating-card:hover::before {
         opacity: 0.2;
     }
+
+    /* Mobile specific images */
+@media (max-width: 768px) {
+    .floating-card:nth-child(1)::before {
+        background-image: url('./Images/FloatCard/Mobile/1.jpg'); /* your mobile image */
+    }
+
+    .floating-card:nth-child(2)::before {
+        background-image: url('./Images/FloatCard/Mobile/2.jpg'); /* your mobile image */
+    }
+}
 
     .floating-card:nth-child(1) {
         align-self: flex-start;
@@ -483,7 +494,7 @@
         z-index: 10;
     }
 
-    .card-icon {
+    /* .card-icon {
         width: 70px;
         height: 70px;
         background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -497,17 +508,17 @@
         box-shadow: var(--shadow-md);
         position: relative;
         z-index: 2;
-    }
+    } */
 
-    .card-title {
-        font-family: var(--font-heading);
-        font-weight: 700;
-        font-size: 1.3rem;
-        margin-bottom: var(--spacing-xs);
-        color: var(--text-primary);
-        position: relative;
-        z-index: 2;
-    }
+        /* .card-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        } */
 
     /* Stats Section */
     .hero-stats {

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A4 Technologies</title>
+    <link rel="icon" type="image/png" href="./Images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -845,30 +846,37 @@
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-item">
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=services@a4technologies.com.au" >
             <div class="contact-icon">
               <i class="fas fa-envelope"></i>
             </div>
             <div class="contact-details">
+                
               <h3>Email</h3>
-              <p>hello@a4technologies.com</p>
+              <p>services@a4technologies.com.au</p>
+              </a>
             </div>
           </div>
           <div class="contact-item">
+            <a href="tel:+61427031455">
             <div class="contact-icon">
               <i class="fas fa-phone"></i>
             </div>
-            <div class="contact-details">
+            <div class="contact-details"> 
               <h3>Phone</h3>
-              <p>+94 (37) 123-4567</p>
+              <p>+61 427 031 455</p>
+              </a>
             </div>
           </div>
           <div class="contact-item">
+            <a href="">
             <div class="contact-icon">
               <i class="fas fa-map-marker-alt"></i>
             </div>
             <div class="contact-details">
               <h3>Location</h3>
               <p>Kurunegala, Sri Lanka</p>
+              </a>
             </div>
           </div>
         </div>
@@ -924,11 +932,19 @@
           </div>
           <div class="social-links">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+           <a href="https://wa.me/+61427031455?text=Hello%20A4%20Technologies%2C%20I%20would%20like%20to%20inquire%20about%20your%20software%20services." 
+   target="_blank" 
+   aria-label="WhatsApp" 
+   rel="noopener noreferrer">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=services@a4technologies.com.au" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+
           </div>
         </div>
         <div class="footer-section">
@@ -1049,9 +1065,60 @@
     });
     
   </script>
+
+<script>
+    const express = require('express');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(bodyParser.json());
+
+app.post('/send-email', (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: '#',  
+      pass: '#'       
+    }
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'yoshithaudayanga00@gmail.com',  
+    subject: subject,
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send('Email failed to send.');
+    }
+    res.send('Email sent successfully!');
+  });
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+</Script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_it1j7dr', 'template_n1jpjdc', this)
+      .then(function() {
+        alert('Message sent successfully!');
+      }, function(error) {
+        alert('FAILED...', error);
+      });
+  });
+</script>
     <script src="script.js"></script>
     <script src="Mouse.js"></script>
     <Script src="menu.js"></Script>
+    
     
 
    

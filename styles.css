@@ -2363,45 +2363,66 @@
             transform: scale(1.1);
         }
 
-        .project-info {
-            padding: var(--spacing-md);
+        .project-info-container {
+            padding: 20px;
+            text-align: left;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            position: relative;
         }
 
-        .project-info h3 {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
+        .project-client-logo {
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .project-info p {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-md);
+        .project-client-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .project-info-container h3 {
+            font-size: 22px;
+            margin-top: 40px; /* Adjusted margin to prevent overlap with logo */
+            margin-bottom: 10px;
+            color: var(--color-heading-dark);
+        }
+
+        .project-info-container p {
+            font-size: 15px;
+            color: var(--color-text-dark);
             line-height: 1.6;
-            font-size: 0.9rem;
             flex-grow: 1;
         }
 
-        .read-more-btn {
+        .project-info-container .read-more-btn {
             display: inline-block;
-            padding: var(--spacing-xs) var(--spacing-md);
-            background: var(--primary-color);
-            color: white;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--color-secondary);
+            color: #fff;
+            border-radius: 5px;
             text-decoration: none;
-            border-radius: var(--radius-md);
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all var(--transition-fast);
+            transition: background-color 0.3s ease;
             align-self: flex-start;
         }
 
-        .read-more-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .project-info-container .read-more-btn:hover {
+            background-color: var(--color-primary);
         }
 
         /* Navigation Buttons */

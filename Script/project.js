@@ -128,7 +128,6 @@
         const caseStudies = {
             1: {
                 image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/1.png",
                 title: "Application Development",
                 subtitle: "Swiss Heritage",
                 client: "The client registration process currently relies on a manual, paper-based system, which has proven to be inefficient and cumbersome. This approach makes it challenging to accurately track client registrations, as well as manage and maintain contact information. As a result, there is a significant risk of lost documents, miscommunication, and delays in processing. The lack of a streamlined system not only hinders organizational efficiency but also affects the quality of service provided to clients. An upgrade to a digital registration system could greatly enhance tracking capabilities and improve overall communication.",
@@ -141,7 +140,6 @@
             },
             2: {
                 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/2.png",
                 title: "IT Infrastructure Support",
                 subtitle: "BusinessPlex",
                 client: "<p>BusinessPlex has successfully relocated to a new facility and is initiating a comprehensive restructuring of its network infrastructure. This includes the optimisation of Windows laptops for enhanced performance and security, as well as the redesign of meeting rooms to facilitate better collaboration and communication. The goal is to create a more efficient working environment that supports the company's growth and enhances productivity for all employees.</p>",
@@ -154,7 +152,6 @@
             },
             3: {
                 image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/3.png",
                 title: "SharePoint and OneDrive",
                 subtitle: "Southbank Montessori",
                 client: "<p>Southbank has been utilizing Microsoft Word and Excel for their daily work, but they have not been backing up or saving files in the file repository. Instead, the documents were saved on the local device. Additionally, they lacked the capability for team members to work on a document simultaneously</p>",
@@ -167,7 +164,6 @@
             },
             4: {
                 image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/4.png",
                 title: "Cyber Security Audit",
                 subtitle: "BusinessPlex",
                 client: "<p>The legal firm of Hasintha. Corporation is on the rise, and as they continue to grow, they're looking to ensure their ICT security is up to par. An audit is on the horizon, and they're ready to take their tech to the next level. </p>",
@@ -180,7 +176,6 @@
             },
             5: {
                 image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/5.png",
                 title: "IT Service Desk Operations and Management",
                 subtitle: "Southbank Montessori",
                 client: "<p>Southbank Montessori, was searching for a reliable and service-oriented ICT provider to manage their IT infrastructure. They needed a provider who could offer both on-site and remote ICT support to ensure that their IT environment was stable, secure, and always up-to-date. </p>",
@@ -194,7 +189,6 @@
             },
             6: {
                 image: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-                logo: "../../Images/ClientsLogo/6.png",
                 title: "Microsoft 365 Configuration and SharePoint ",
                 subtitle: "Swiss Heritage",
                 client: "<p>Swiss Heritage had been utilising Google Business for their email communications and document storage needs. However, management expressed dissatisfaction with this solution, feeling it lacked the comprehensive features they required. In search of a more integrated and holistic approach, they began exploring options that would encompass both email functionality and seamless integration with SharePoint for enhanced collaboration and document management.</p>",
@@ -208,13 +202,13 @@
         };
 
         // Function to open modal with case study data
-        function openModal(caseId) {
+        function openModal(caseId, logoSrc) {
             const caseStudy = caseStudies[caseId];
 
             if (caseStudy) {
                 modalImage.src = caseStudy.image;
                 modalImage.alt = caseStudy.title;
-                modalLogo.src = caseStudy.logo;
+                modalLogo.src = logoSrc;
                 modalLogo.alt = "Client Logo";
                 modalTitle.textContent = caseStudy.title;
                 modalSubtitle.textContent = caseStudy.subtitle;
@@ -241,8 +235,11 @@
         viewButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                const caseId = this.getAttribute('data-case') || 1;
-                openModal(caseId);
+                const caseId = this.getAttribute('data-case');
+                const projectCard = this.closest('.project-card');
+                const logoImg = projectCard.querySelector('.project-client-logo img');
+                const logoSrc = logoImg ? logoImg.src : '';
+                openModal(parseInt(caseId), logoSrc); // Convert caseId to an integer
             });
         });
 

@@ -23,19 +23,65 @@ class ServicesCarousel {
     
     getTotalSlides() {
         if (this.isMobile) {
-            return 9; // 1 card per slide
+            return 9; // 1 card per slide - each individual card is a slide
         } else if (this.isTablet) {
             return Math.ceil(9 / 2); // 2 cards per slide = 5 slides
         } else {
-            return 3; // 3 cards per slide
+            return 3; // 3 cards per slide - each slide group is a slide
         }
     }
     
     init() {
+        this.restructureForMobile();
         this.createDots();
         this.bindEvents();
         this.updateCarousel();
         this.updateButtonStates();
+    }
+
+    restructureForMobile() {
+        if (this.isMobile) {
+            // On mobile, restructure HTML so each card is its own slide
+            const allCards = Array.from(this.serviceCards);
+            this.grid.innerHTML = '';
+            
+            allCards.forEach(card => {
+                const slideGroup = document.createElement('div');
+                slideGroup.className = 'slide-group';
+                slideGroup.appendChild(card);
+                this.grid.appendChild(slideGroup);
+            });
+            
+            // Update references
+            this.slideGroups = this.grid.querySelectorAll('.slide-group');
+            this.serviceCards = this.grid.querySelectorAll('.service-card');
+        } else {
+            // On desktop/tablet, restore original structure with 3 cards per slide group
+            const allCards = Array.from(this.serviceCards);
+            this.grid.innerHTML = '';
+            
+            // Create 3 slide groups with 3 cards each
+            for (let i = 0; i < 3; i++) {
+                const slideGroup = document.createElement('div');
+                slideGroup.className = 'slide-group';
+                
+                for (let j = 0; j < 3; j++) {
+                    const cardIndex = i * 3 + j;
+                    if (cardIndex < allCards.length) {
+                        slideGroup.appendChild(allCards[cardIndex]);
+                    }
+                }
+                
+                this.grid.appendChild(slideGroup);
+            }
+            
+            // Update references
+            this.slideGroups = this.grid.querySelectorAll('.slide-group');
+            this.serviceCards = this.grid.querySelectorAll('.service-card');
+        }
+        
+        // Re-bind read more buttons after restructuring
+        this.bindReadMoreButtons();
     }
 
     createDots() {
@@ -82,6 +128,9 @@ class ServicesCarousel {
 
             // Only recreate if mode changed
             if (wasMobile !== this.isMobile || wasTablet !== this.isTablet) {
+                // Restructure HTML for new mode
+                this.restructureForMobile();
+                
                 // Recompute total slides based on new mode
                 this.totalSlides = this.getTotalSlides();
 
@@ -138,6 +187,7 @@ class ServicesCarousel {
     }
 
     bindReadMoreButtons() {
+        // Re-bind read more buttons after restructuring
         const readMoreBtns = document.querySelectorAll('#services .read-more-btn');
         const serviceDetails = [
             {
@@ -174,7 +224,7 @@ class ServicesCarousel {
             },
             {
                 title: "Document Management",
-                details: "• Are your important documents scattered across multiple computers, emails, or drives?\n\n• Do you struggle to find the latest version of a file when you need it?\n\n• Is sharing documents with your team slow or complicated?\n\n• Do you worry about losing critical files due to accidental deletion or hardware failure?\n\n• Are paper documents still taking up space and slowing down your workflow?\n\n• Do you spend too much time manually organising or naming files?\n\n• Are approvals or document workflows taking longer than they should?\n\n• Is it hard to track who accessed or edited a document?\n\n• Do you face security risks with sensitive documents being stored in unsecured locations?\n\n• Would your team benefit from a centralised, easy-to-use system for all documents?"
+                details: "• Are your important documents scattered across multiple computers, emails, or drives?\n\n• Do you struggle to find the latest version of a file when you need it?\n\n• Is sharing documents with your team slow or complicated?\n\n• Do you worry about losing critical files due to accidental deletion or hardware failure?\n\n• Are paper documents still taking up space and slowing down your workflow?\n\n• Do you spend too much time manually organising or naming files?\n\n• Are approvals or document workflows taking longer than they should?\n\n• Is it hard to track who accessed or edited a document?\n\n• Do you face security risks with sensitive documents being stored in unsecured locations?\n\n• Would your team benefit from a centralised, easy-to-use system for all documents?\n\n If any of these situations sound familiar, we can help you manage and share your documents more effectively. Just let us know what you need, and we can explore cost-effective, reliable, and user-friendly solutions for you!"
             }
         ];
 

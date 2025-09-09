@@ -119,43 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ===== PROJECT FILTERING =====
-    
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter projects with animation
-            projectCards.forEach((card, index) => {
-                const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    setTimeout(() => {
-                        card.style.display = 'block';
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, index * 100);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
+    // Note: Project filtering functionality is now handled in project.js
+    // This prevents conflicts between multiple filtering implementations
     
     // ===== FLOATING CARDS ANIMATION FIX =====
     
@@ -244,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== FORM HANDLING =====
     
-    // Contact form submission
     const contactForm = document.querySelector('.contact-form form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -277,40 +241,39 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
         });
     }
-    
-    // Newsletter form submission
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const input = this.querySelector('input');
-            const button = this.querySelector('button');
-            const originalIcon = button.innerHTML;
-            
-            // Show loading state
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            button.disabled = true;
-            
-            // Simulate subscription
+
+    // Handle general site loader (if any - ensure it doesn't conflict with form loader)
+    const siteLoader = document.getElementById('loading'); // This is for the *site* loader
+    if (siteLoader) {
+        // Show loader only during initial page load
+        if (document.readyState === 'loading') {
+            siteLoader.classList.add('show');
+        } else {
+            siteLoader.classList.remove('show');
+            siteLoader.style.display = 'none';
+        }
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', function() {
             setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check"></i>';
-                button.style.background = 'var(--success-color)';
-                
-                // Reset
-                input.value = '';
-                
+                siteLoader.classList.remove('show');
                 setTimeout(() => {
-                    button.innerHTML = originalIcon;
-                    button.disabled = false;
-                    button.style.background = '';
-                }, 2000);
-                
-                showNotification('Successfully subscribed to newsletter!', 'success');
-            }, 1500);
+                    siteLoader.style.display = 'none';
+                }, 500); // Match this duration with your CSS transition duration
+            }, 1000); // Delay before starting fade out
         });
+
+        // Fallback: ensure loader is hidden after maximum time
+        setTimeout(() => {
+            if (siteLoader.classList.contains('show')) {
+                siteLoader.classList.remove('show');
+                setTimeout(() => {
+                    siteLoader.style.display = 'none';
+                }, 500); // Match this duration with your CSS transition duration
+            }
+        }, 5000); // Hide after 5 seconds as a fallback
     }
-    
+
     // ===== NOTIFICATION SYSTEM =====
     
     function showNotification(message, type = 'info') {
@@ -471,127 +434,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== LOADING SCREEN =====
     
-    const loading = document.getElementById('loading');
-    if (loading) {
-        // Show loader only during initial page load
-        if (document.readyState === 'loading') {
-            loading.classList.add('show');
-            
-            // Hide loader when page is fully loaded
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    loading.classList.remove('show');
-                    setTimeout(() => {
-                        loading.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            });
-        } else {
-            // Page already loaded, keep loader hidden
-            loading.style.display = 'none';
-        }
-        
-        // Fallback: ensure loader is hidden after maximum time
-        setTimeout(() => {
-            if (loading.classList.contains('show')) {
-                loading.classList.remove('show');
-                setTimeout(() => {
-                    loading.style.display = 'none';
-                }, 500);
-            }
-        }, 5000);
-    }
+    // The general site loader is now handled by the contact form's submit handler.
+    // This block is no longer needed for the site-wide loader.
 
     // ===== PROJECT CAROUSEL FUNCTIONALITY =====
-    const projectsCarouselTrack = document.getElementById('projectsCarouselTrack');
-    const projectsPrevBtn = document.getElementById('projectsPrevBtn');
-    const projectsNextBtn = document.getElementById('projectsNextBtn');
-    const projectsDotsContainer = document.querySelector('.projects-carousel-controls'); // Use the existing controls div for dots
-
-    if (projectsCarouselTrack && projectsPrevBtn && projectsNextBtn && projectsDotsContainer) {
-        const projectCardsInCarousel = projectsCarouselTrack.querySelectorAll('.project-card');
-        const projectsTotalSlides = Math.ceil(projectCardsInCarousel.length / 3); // 3 cards per slide
-        let projectsCurrentIndex = 0;
-        let projectsStep = 0;
-
-        function getProjectsStepSize() {
-            if (window.innerWidth <= 480) {
-                return projectsCarouselTrack.querySelector('.project-card').offsetWidth * 1; // 1 card at a time on small mobile
-            } else if (window.innerWidth <= 768) {
-                return projectsCarouselTrack.querySelector('.project-card').offsetWidth * 2; // 2 cards at a time on tablets
-            } else {
-                return projectsCarouselTrack.querySelector('.project-card').offsetWidth * 3; // 3 cards at a time on desktop
-            }
-        }
-
-        function createProjectDots() {
-            projectsDotsContainer.innerHTML = ''; // Clear existing dots
-            for (let i = 0; i < projectsTotalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'project-dot';
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToProjectSlide(i));
-                projectsDotsContainer.appendChild(dot);
-            }
-        }
-
-        function updateProjectDots() {
-            const dots = projectsDotsContainer.querySelectorAll('.project-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === projectsCurrentIndex);
-            });
-        }
-
-        function goToProjectSlide(index) {
-            projectsCurrentIndex = Math.max(0, Math.min(index, projectsTotalSlides - 1));
-            const offset = -(projectsCurrentIndex * projectsStep);
-            projectsCarouselTrack.style.transform = `translateX(${offset}px)`;
-            updateProjectDots();
-            updateProjectButtonStates();
-        }
-
-        function updateProjectButtonStates() {
-            projectsPrevBtn.disabled = projectsCurrentIndex === 0;
-            projectsNextBtn.disabled = projectsCurrentIndex >= projectsTotalSlides - 1;
-        }
-
-        // Auto-play functionality for projects carousel
-        let projectsAutoPlayInterval;
-
-        function startProjectAutoPlay() {
-            projectsAutoPlayInterval = setInterval(() => {
-                if (projectsCurrentIndex < projectsTotalSlides - 1) {
-                    projectsCurrentIndex++;
-                } else {
-                    projectsCurrentIndex = 0; // Loop back to start
-                }
-                goToProjectSlide(projectsCurrentIndex);
-            }, 4000); // Change slide every 4 seconds
-        }
-
-        function stopProjectAutoPlay() {
-            if (projectsAutoPlayInterval) {
-                clearInterval(projectsAutoPlayInterval);
-            }
-        }
-
-        // Pause auto-play on hover
-        projectsCarouselTrack.addEventListener('mouseenter', stopProjectAutoPlay);
-        projectsCarouselTrack.addEventListener('mouseleave', startProjectAutoPlay);
-
-        // Initialize project carousel
-        projectsStep = getProjectsStepSize(); // Set initial step size
-        createProjectDots();
-        updateProjectButtonStates();
-        startProjectAutoPlay();
-
-        // Update step size and maintain position on window resize
-        window.addEventListener('resize', () => {
-            projectsStep = getProjectsStepSize();
-            goToProjectSlide(projectsCurrentIndex); // Maintain current position
-        });
-
-    }
+    // Note: Project carousel functionality is now handled in project.js
+    // This prevents conflicts between multiple carousel implementations
     
     // ===== INTERACTIVE HOVER EFFECTS =====
     
@@ -794,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Enable cursor trail on desktop only
     if (window.innerWidth > 768) {
-        createCursorTrail();
+        // createCursorTrail(); // Commented out to disable cursor trail
     }
     
     // Mobile menu functionality
